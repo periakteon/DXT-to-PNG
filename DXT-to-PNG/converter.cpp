@@ -6,9 +6,9 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
-#include <cstdio>
 #include <cstring>
 #include <format>
+#include <print>
 
 static constexpr std::string_view kTgaSignature = "TRUEVISION-XFILE.";
 
@@ -92,9 +92,9 @@ Convert(const std::filesystem::path& input, const std::filesystem::path& output)
     auto rgba = Decode(*hdr, pixels);
     if (!rgba) return std::unexpected(rgba.error());
 
-    std::printf("Name:   %s\n", hdr->name.c_str());
-    std::printf("Format: %s\n", std::string(FormatName(hdr->format)).c_str());
-    std::printf("Size:   %d x %d\n", hdr->width, hdr->height);
+    std::println("Name:   {}", hdr->name);
+    std::println("Format: {}", FormatName(hdr->format));
+    std::println("Size:   {} x {}", hdr->width, hdr->height);
 
     const int ok = stbi_write_png(output.string().c_str(),
                                   hdr->width, hdr->height, 4,
@@ -102,6 +102,6 @@ Convert(const std::filesystem::path& input, const std::filesystem::path& output)
     if (!ok)
         return std::unexpected("Failed to write '" + output.string() + "'");
 
-    std::printf("Saved:  %s\n", output.string().c_str());
+    std::println("Saved:  {}", output.string());
     return {};
 }

@@ -50,6 +50,7 @@ std::vector<uint8_t> DecompressDXT1(std::span<const uint8_t> src, int w, int h) 
 
     for (int by = 0; by < bh; ++by) {
         for (int bx = 0; bx < bw; ++bx, srcOff += 8) {
+            if (srcOff + 8 > src.size()) break;
             std::array<std::array<uint8_t, 4>, 16> c{};
             DecompressColorBlock(std::span<const uint8_t, 8>(src.data() + srcOff, 8), c, false);
             for (int py = 0; py < 4; ++py) for (int px = 0; px < 4; ++px) {
@@ -71,6 +72,7 @@ std::vector<uint8_t> DecompressDXT3(std::span<const uint8_t> src, int w, int h) 
 
     for (int by = 0; by < bh; ++by) {
         for (int bx = 0; bx < bw; ++bx) {
+            if (srcOff + 16 > src.size()) break;
             std::array<uint8_t, 16> alpha{};
             for (int i = 0; i < 8; ++i) {
                 alpha[2*i+0] = (src[srcOff+i] & 0x0F) * 17;
@@ -101,6 +103,7 @@ std::vector<uint8_t> DecompressDXT5(std::span<const uint8_t> src, int w, int h) 
 
     for (int by = 0; by < bh; ++by) {
         for (int bx = 0; bx < bw; ++bx) {
+            if (srcOff + 16 > src.size()) break;
             const uint8_t a0 = src[srcOff], a1 = src[srcOff+1];
             std::array<uint8_t, 8> at{};
             at[0] = a0; at[1] = a1;

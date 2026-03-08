@@ -1,6 +1,7 @@
 #include "texture_format.h"
 #include <cstring>
 #include <format>
+#include <utility>
 
 std::expected<TextureFormat, std::string>
 FormatFromTypeData(std::span<const uint8_t, 8> typeData) {
@@ -31,5 +32,5 @@ std::string_view FormatName(TextureFormat fmt) {
         case TextureFormat::A1R5G5B5: return "A1R5G5B5";
         case TextureFormat::A4R4G4B4: return "A4R4G4B4";
     }
-    return "unknown";
+    std::unreachable();
 }
