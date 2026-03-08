@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="DXT-to-PNG/DXT-to-PNG.vcxproj" Id="bc270da1-706d-42df-88ae-c97a5232869c" />
+</Solution>

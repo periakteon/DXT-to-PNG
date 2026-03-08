@@ -1,0 +1,25 @@
+# Visual Studio build output
+x64/
+x86/
+Debug/
+Release/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+*.ipch
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.exe
+
+# VS cache / metadata
+.vs/
+ipch/
+
+# MSBuild
+*.tlog
+*.lastbuildstate
+*.recipe
+*.log
