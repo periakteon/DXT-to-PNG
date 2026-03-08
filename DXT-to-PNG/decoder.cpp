@@ -28,9 +28,9 @@ void DecompressColorBlock(std::span<const uint8_t, 8> src,
         b[3] = static_cast<uint8_t>((b[0] + 2*b[1] + 1) / 3);
         a[3] = 255;
     } else {
-        r[2] = (r[0] + r[1]) / 2;
-        g[2] = (g[0] + g[1]) / 2;
-        b[2] = (b[0] + b[1]) / 2;
+        r[2] = static_cast<uint8_t>((r[0] + r[1]) / 2);
+        g[2] = static_cast<uint8_t>((g[0] + g[1]) / 2);
+        b[2] = static_cast<uint8_t>((b[0] + b[1]) / 2);
         a[2] = 255;
         r[3] = 0; g[3] = 0; b[3] = 0; a[3] = 0;
     }
