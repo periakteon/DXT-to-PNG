@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="texture_format.h" />
+    <ClInclude Include="texture_header.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="texture_format.cpp" />
