@@ -21,9 +21,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\stb_image_write.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -136,6 +133,7 @@
     <ClInclude Include="converter.h" />
     <ClInclude Include="decoder.h" />
     <ClInclude Include="file_utils.h" />
+    <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="texture_format.h" />
     <ClInclude Include="texture_header.h" />
   </ItemGroup>
