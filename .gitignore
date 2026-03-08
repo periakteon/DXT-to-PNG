@@ -23,3 +23,6 @@ ipch/
 *.lastbuildstate
 *.recipe
 *.log
+
+# Internal planning docs
+docs/
