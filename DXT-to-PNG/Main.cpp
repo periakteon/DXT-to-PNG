@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::println("Usage: N3TexConverter <input.dxt> [output.png]");
+        std::println("Usage: DXT-to-PNG <input.dxt> [output.png]");
         return 1;
     }
 

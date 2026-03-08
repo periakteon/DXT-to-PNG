@@ -19,7 +19,7 @@ Converts Knight Online `.dxt` texture files to standard `.png` images.
 ## Usage
 
 ```
-N3TexConverter <input.dxt> [output.png]
+DXT-to-PNG <input.dxt> [output.png]
 ```
 
 ### Arguments
@@ -33,13 +33,13 @@ N3TexConverter <input.dxt> [output.png]
 
 Convert with auto-generated output name:
 ```
-N3TexConverter texture.dxt
+DXT-to-PNG texture.dxt
 ```
 This produces `texture.png` in the same folder.
 
 Convert with a custom output path:
 ```
-N3TexConverter texture.dxt C:\output\my_texture.png
+DXT-to-PNG texture.dxt C:\output\my_texture.png
 ```
 
 ## Output
