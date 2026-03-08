@@ -133,11 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="decoder.h" />
     <ClInclude Include="file_utils.h" />
     <ClInclude Include="texture_format.h" />
     <ClInclude Include="texture_header.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="decoder.cpp" />
     <ClCompile Include="file_utils.cpp" />
     <ClCompile Include="texture_format.cpp" />
   </ItemGroup>
