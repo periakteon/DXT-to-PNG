@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "converter.h"
 #include "decoder.h"
 #include "file_utils.h"
