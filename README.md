@@ -2,6 +2,8 @@
 
 Converts Knight Online `.dxt` texture files to standard `.png` images.
 
+Supports both a **graphical interface** (double-click to launch) and a **command-line interface** (pass arguments directly).
+
 ## Supported Formats
 
 | Format | Description |
@@ -16,7 +18,29 @@ Converts Knight Online `.dxt` texture files to standard `.png` images.
 
 > **Note:** Encrypted textures and TGA-wrapped textures are not supported.
 
-## Usage
+---
+
+## GUI Mode
+
+Launch the app with no arguments (double-click the `.exe` or run it without any flags).
+
+![GUI screenshot placeholder]
+
+### Features
+
+- **Drag-and-drop** — drop `.dxt` files directly onto the window
+- **Add Files** — multi-select file picker filtered to `.dxt`
+- **Batch conversion** — queue any number of files and convert them all at once
+- **Parallel processing** — each file converts on its own thread
+- **Per-file status** — Pending / Converting / Done / Error with inline error messages
+- **Output folder** — pick a custom destination, or leave blank to save next to each source file
+- **Progress bar** — live `X / N` completion counter
+
+---
+
+## CLI Mode
+
+Pass arguments to run headlessly from a terminal (cmd, PowerShell, etc.).
 
 ```
 DXT-to-PNG <input.dxt> [output.png]
@@ -27,7 +51,7 @@ DXT-to-PNG <input.dxt> [output.png]
 | Argument | Required | Description |
 |----------|----------|-------------|
 | `input.dxt` | Yes | Path to the Knight Online `.dxt` texture file |
-| `output.png` | No | Path for the output PNG. Defaults to the same name as the input |
+| `output.png` | No | Output path. Defaults to the same folder and stem as the input |
 
 ### Examples
 
@@ -35,16 +59,16 @@ Convert with auto-generated output name:
 ```
 DXT-to-PNG texture.dxt
 ```
-This produces `texture.png` in the same folder.
+Produces `texture.png` in the same folder.
 
 Convert with a custom output path:
 ```
 DXT-to-PNG texture.dxt C:\output\my_texture.png
 ```
 
-## Output
+### Output
 
-On success the converter prints the texture info and the saved path:
+On success the converter prints the texture info and saved path:
 
 ```
 Name:   my_texture
@@ -53,14 +77,22 @@ Size:   256 x 256
 Saved:  texture.png
 ```
 
+---
+
 ## Building
 
-Open `DXT-to-PNG.slnx` in **Visual Studio 2022** and build the solution (`Ctrl+Shift+B`).
+Open `DXT-to-PNG.slnx` in **Visual Studio 2022** and build (`Ctrl+Shift+B`).
 
-The executable is written to:
+Output locations:
 - Debug:   `DXT-to-PNG\x64\Debug\DXT-to-PNG.exe`
 - Release: `DXT-to-PNG\x64\Release\DXT-to-PNG.exe`
 
+---
+
 ## Dependencies
 
-- [`stb_image_write.h`](https://github.com/nothings/stb) — single-header PNG writer (included in the project)
+| Library | Purpose |
+|---------|---------|
+| [`stb_image_write.h`](https://github.com/nothings/stb) | Single-header PNG writer (vendored) |
+| [Dear ImGui](https://github.com/ocornut/imgui) | Immediate-mode GUI (vendored, master branch) |
+| DirectX 11 | Rendering backend for ImGui (ships with Windows SDK) |

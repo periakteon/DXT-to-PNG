@@ -1,4 +1,5 @@
 #include "app.h"
+#include "converter.h"
 #include "gui.h"
 #include "gui_state.h"
 #include "imgui/imgui.h"
@@ -7,6 +8,8 @@
 #include <Windows.h>
 #include <shellapi.h>
 #include "resource.h"
+#include <filesystem>
+#include <print>
 
 // Forward declaration from imgui_impl_win32.cpp
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND, UINT, WPARAM, LPARAM);
@@ -48,6 +51,30 @@ static LRESULT WINAPI WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
+    // ── Console mode: run headlessly when arguments are passed ────────────────
+    int     argc = 0;
+    LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+    if (argc >= 2) {
+        AttachConsole(ATTACH_PARENT_PROCESS);
+        FILE* f;
+        freopen_s(&f, "CONOUT$", "w", stdout);
+        freopen_s(&f, "CONOUT$", "w", stderr);
+
+        const std::filesystem::path input  = argv[1];
+        const std::filesystem::path output = (argc >= 3)
+            ? std::filesystem::path(argv[2])
+            : input.parent_path() / (input.stem().string() + ".png");
+        LocalFree(argv);
+
+        if (const auto result = Convert(input, output); !result) {
+            std::println(stderr, "Error: {}", result.error());
+            return 1;
+        }
+        return 0;
+    }
+    LocalFree(argv);
+
+    // ── GUI mode ──────────────────────────────────────────────────────────────
     if (FAILED(CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED))) return 1;
 
     WNDCLASSEXW wc{};
