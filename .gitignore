@@ -26,3 +26,6 @@ ipch/
 
 # Internal planning docs
 docs/
+
+# ImGui auto-generated settings
+imgui.ini
